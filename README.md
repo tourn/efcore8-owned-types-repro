@@ -30,6 +30,13 @@ This has the following effects:
 * The *TestAgain* migration fails to apply
 * Every subsequent migration will contain these commands, since the snapshot does not reflect these changes
 
+When comparing the *owned-1prop* and *owned-2prop* scenarios, we can observe the following difference:
+
+![image](https://github.com/tourn/efcore8-owned-types-repro/assets/2150982/9711be01-71b2-4da6-baa7-b2388fb53d0b)
+
+The *1prop* scenario (right) generates an additional `.HasColumnName`, which is absent on both properties from 
+the *2prop* scenario. This is the column that the second migration fruitlessly tries to drop.
+
 ## Scenarios
 I tested 3 scenarios and stored the output in the *results/* folder.
 
